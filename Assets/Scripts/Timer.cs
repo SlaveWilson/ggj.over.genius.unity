@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
         if (!isStop)
         {
             remainingTime = _endTime - Time.time;
-            if (remainingTime <= 0)
+            if (remainingTime <= 1)
             {
                 isStop = true;
             }
@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
     {
         isStart = true;
         isStop = false;
-        _endTime = Time.time + durationInSecond;
+        _endTime = Time.time + durationInSecond + 1.0f;
     }
 
     [ContextMenu("Stop Timer")]
