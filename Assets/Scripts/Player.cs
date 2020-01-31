@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private Vector2 facingDirection = Vector2.up;
 
     private void Awake()
     {
@@ -19,8 +20,17 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 10.0f);
-        Debug.DrawRay(transform.position, Vector2.up);
+        if (Input.GetKeyDown(KeyCode.W))
+            facingDirection = Vector2.up;
+        else if (Input.GetKeyDown(KeyCode.S))
+            facingDirection = Vector2.down;
+        else if (Input.GetKeyDown(KeyCode.A))
+            facingDirection = Vector2.left;
+        else if (Input.GetKeyDown(KeyCode.D))
+            facingDirection = Vector2.right;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDirection, 10.0f);
+        Debug.DrawRay(transform.position, facingDirection);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE) && Input.GetKeyUp("space"))
         {
