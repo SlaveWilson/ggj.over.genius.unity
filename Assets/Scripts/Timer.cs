@@ -3,10 +3,11 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public float durationInSecond = 90.0f;
-    public bool isStop = true;
+    public static float durationInSecond = 3.0f;
+    public static bool isStart = false;
+    public static bool isStop = true;
 
-    public float remainingTime {
+    public static float remainingTime {
         get
         {
             return _remainingTime;
@@ -18,9 +19,9 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private float _remainingTime;
-    private float _endTime = 0.0f;
-    private TextMeshProUGUI _text;
+    private static float _remainingTime;
+    private static float _endTime = 0.0f;
+    private static TextMeshProUGUI _text;
 
     private void Awake()
     {
@@ -33,27 +34,28 @@ public class Timer : MonoBehaviour
         if (!isStop)
         {
             remainingTime = _endTime - Time.time;
-            if (remainingTime < 0)
+            if (remainingTime <= 0)
             {
                 isStop = true;
             }
         }
     }
 
-    private void UpdateTimeUI()
+    private static void UpdateTimeUI()
     {
         _text.text = remainingTime.CovertToTimeFormatString();
     }
 
     [ContextMenu("Start Timer")]
-    public void StartTimer()
+    public static void StartTimer()
     {
+        isStart = true;
         isStop = false;
         _endTime = Time.time + durationInSecond;
     }
 
     [ContextMenu("Stop Timer")]
-    public void StopTimer()
+    public static void StopTimer()
     {
         isStop = true;
         remainingTime = 0.0f;

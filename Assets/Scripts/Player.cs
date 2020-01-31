@@ -2,6 +2,9 @@
 
 public class Player : MonoBehaviour
 {
+    // boolean
+    public bool disablePlayer = false;
+
     public float moveSpeed = 1.0f;
 
     public string horizontalAxis = "Horizontal";
@@ -53,6 +56,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _movement * moveSpeed * Time.fixedDeltaTime);
+        if (!disablePlayer)
+        {
+            _rb.MovePosition(_rb.position + _movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 }
