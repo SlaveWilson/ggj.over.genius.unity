@@ -29,13 +29,10 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 10.0f);
         Debug.DrawRay(transform.position, Vector2.up);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
+        if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE) && actionPressRelease)
         {
             var interactObject = hit.collider.gameObject;
-            if (actionPressRelease)
-            {
-                interactObject.GetComponent<Interactable>().Interact();
-            }
+            interactObject.GetComponent<Interactable>().Interact();
         }
     }
 }
