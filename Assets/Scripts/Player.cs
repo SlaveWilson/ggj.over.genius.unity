@@ -6,31 +6,33 @@ public class Player : MonoBehaviour
 
     private string TAG_INTERACTABLE = "Interactable";
 
-    private Rigidbody2D rb;
-    private Vector2 movement;
-    private Vector2 facingDirection = Vector2.up;
+    private Interactable _activeItem = null;
+
+    private Rigidbody2D _rb;
+    private Vector2 _movement;
+    private Vector2 _facingDirection = Vector2.up;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        _movement.x = Input.GetAxisRaw("Horizontal");
+        _movement.y = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.W))
-            facingDirection = Vector2.up;
+            _facingDirection = Vector2.up;
         else if (Input.GetKeyDown(KeyCode.S))
-            facingDirection = Vector2.down;
+            _facingDirection = Vector2.down;
         else if (Input.GetKeyDown(KeyCode.A))
-            facingDirection = Vector2.left;
+            _facingDirection = Vector2.left;
         else if (Input.GetKeyDown(KeyCode.D))
-            facingDirection = Vector2.right;
+            _facingDirection = Vector2.right;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDirection, 10.0f);
-        Debug.DrawRay(transform.position, facingDirection);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 10.0f);
+        Debug.DrawRay(transform.position, _facingDirection);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE) && Input.GetKeyUp("space"))
         {
@@ -41,6 +43,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + _movement * moveSpeed * Time.fixedDeltaTime);
     }
 }
