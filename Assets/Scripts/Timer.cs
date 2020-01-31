@@ -31,6 +31,7 @@ public class Timer : MonoBehaviour
     [ContextMenu("Stop Timer")]
     public void StopTimer()
     {
-
+        isStop = true;
+        remainingTime = 0.0f;
     }
 }
