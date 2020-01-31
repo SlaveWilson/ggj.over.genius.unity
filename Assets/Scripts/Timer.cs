@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
 
     private void UpdateTimeUI()
     {
-        _text.text = string.Format("{0:00}:{1:00}", (int)remainingTime / 60, (int)remainingTime % 60);
+        _text.text = remainingTime.CovertToTimeFormatString();
     }
 
     [ContextMenu("Start Timer")]
