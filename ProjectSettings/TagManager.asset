@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 2215491507
+    locked: 0
   - name: Player
     uniqueID: 855368095
     locked: 0

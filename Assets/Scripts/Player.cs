@@ -99,6 +99,6 @@ public class Player : MonoBehaviour
     private void UpdateItemDialog()
     {
         if (_activeItem != null) iconBox.SetIcon(_activeItem.image);
-        else iconBox.SetIcon(null);
+        else iconBox.Close();
     }
 }
