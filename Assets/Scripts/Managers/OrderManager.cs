@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrderManager : MonoBehaviour
 {
     // reference
+    public static OrderManager instance;
 
     // Inspector elements
     public GameObject _canvas;
@@ -15,27 +16,34 @@ public class OrderManager : MonoBehaviour
     public static List<GameObject> allOrderPanelReference;
 
 
+    // Generate items in scene
+    public Table table;
+    public Item item;
+
 
     public static List<GameObject> allOrders = new List<GameObject>();
     
 
     private void Awake()
     {
+        instance = this;
         canvasReference = _canvas;
         allOrderPanelReference = _allOrderPanel;
     }
 
     public static void StartOrder()
     {
-        AddOrder(0);
-        AddOrder(1);
-        AddOrder(2);
+        instance.AddOrder(0);
+        instance.AddOrder(1);
+        instance.AddOrder(2);
     }
 
-    private static void AddOrder(int type)
+    private void AddOrder(int type)
     {
         GameObject order = Instantiate(allOrderPanelReference[type], canvasReference.transform);
         allOrders.Add(order);
+
+        table.item = Instantiate(item).GetComponent<Item>();
     }
     public static void RemoveOrderAt(int i)
     {
