@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.PlayBGM(SoundManager.mainGameBGM);
         DialogManager.ShowInstruction();
         PauseGame();
     }
@@ -33,10 +34,12 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 instructionClicked = true;
+                SoundManager.ClickButtonSE();
                 DialogManager.DestroyInstruction();
 
                 // Next action
                 CameraManager.StartZoomOut();
+                SoundManager.ReadySE();
                 DialogManager.ShowReady();
             }
         }
@@ -47,9 +50,11 @@ public class GameManager : MonoBehaviour
             DialogManager.DestroyReady();
 
             // Next action
+            SoundManager.GoSE();
             DialogManager.ShowGo();
             ResumeGame();
             Timer.StartTimer();
+            OrderManager.StartOrder();
         }
 
         if (DialogManager.goFinished)
@@ -62,12 +67,14 @@ public class GameManager : MonoBehaviour
         {
             gameFinished = true;
             Timer.StopTimer();
-            SoundManager.TimesUp();
 
             // Next action
+            SoundManager.TimesUpSE();
             DialogManager.ShowTimesUp();
             PauseGame();
             CanvasManager.ShowEndGamePanel();
+
+            SoundManager.BGMSpeaker.Stop();
         }
 
         if (CanvasManager.canDestroyEndGamePanel && Input.GetKeyDown(KeyCode.Return))
@@ -75,6 +82,8 @@ public class GameManager : MonoBehaviour
             CanvasManager.DestroyEndGamePanel();
         }
     }
+
+
 
     private void PauseGame()
     {

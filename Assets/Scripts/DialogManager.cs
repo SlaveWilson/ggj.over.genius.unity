@@ -6,10 +6,11 @@ public class DialogManager : MonoBehaviour
 {
     // reference
     public static DialogManager instance;
+
+    // Inspector elements
     public GameObject _canvas;
     public static GameObject canvasReference;
 
-    // Inspector elements
     public GameObject _instructionPanel;
     public static GameObject instructionPanelReference;
     public GameObject _readyPanel;
