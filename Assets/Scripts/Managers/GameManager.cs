@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     // boolean
     public static bool gameFinished = false;
+    public static bool playAgain = false;
+    public static bool exit = false;
 
     private void Awake()
     {
@@ -20,8 +22,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (playAgain)
+        {
+            CanvasManager.startMenu.SetActive(false);
+            CanvasManager.modeMenu.SetActive(false);
+
+            CameraManager.StartZoomOut();
+            SoundManager.ReadySE();
+            DialogManager.ShowReady();
+        }
+        else if (exit)
+        {
+            CanvasManager.startMenu.SetActive(true);
+            CanvasManager.modeMenu.SetActive(false);
+        }
+        else
+        {
+            CanvasManager.startMenu.SetActive(true);
+            CanvasManager.modeMenu.SetActive(false);
+        }
         SoundManager.PlayBGM(SoundManager.mainGameBGM);
-        DialogManager.ShowInstruction();
         PauseGame();
     }
 
@@ -140,6 +160,9 @@ public class GameManager : MonoBehaviour
         Timer.isStart = false;
         Timer.isStop = true;
         gameFinished = false;
+
+        playAgain = true;
+        exit = false;
     }
     private static void Exit()
     {
@@ -150,5 +173,8 @@ public class GameManager : MonoBehaviour
         Timer.isStart = false;
         Timer.isStop = true;
         gameFinished = false;
+
+        exit = true;
+        playAgain = false;
     }
 }
