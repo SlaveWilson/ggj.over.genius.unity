@@ -82,8 +82,8 @@ public class Player : MonoBehaviour
             _animator.SetInteger("direction", (int)Direction.East);
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 15.0f);
-        Debug.DrawRay(transform.position, _facingDirection * 15.0f, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 10.0f);
+        Debug.DrawRay(transform.position, _facingDirection * 10.0f, Color.red);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
         {
@@ -120,7 +120,11 @@ public class Player : MonoBehaviour
 
     private void UpdateItemDialog()
     {
-        if (_activeItem != null) iconBox.SetIcon(_activeItem.image);
+        if (_activeItem != null)
+        {
+            if (_activeItem.currentState == Item.State.Done) iconBox.showTickIcon = true;
+            iconBox.SetIcon(_activeItem.image);
+        }
         else iconBox.Close();
     }
 }
