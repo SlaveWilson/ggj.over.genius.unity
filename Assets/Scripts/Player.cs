@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public KeyCode actionKeyCode = KeyCode.Space;
 
     [Header("Item Dialog")]
-    [SerializeField] private IconBox iconBox;
+    [SerializeField] private IconBox iconBox = null;
 
     private string TAG_INTERACTABLE = "Interactable";
 
