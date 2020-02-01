@@ -26,6 +26,8 @@ public class Table : Interactable
 
     private void Pickup(Player player)
     {
+        if (player.activeItem != null) return;
+
         player.activeItem = item;
         item = null;
         itemImage.sprite = null;
