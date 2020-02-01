@@ -41,6 +41,14 @@ public class GameManager : MonoBehaviour
             CanvasManager.startMenu.SetActive(true);
             CanvasManager.modeMenu.SetActive(false);
         }
+        if (Player.isSinglePlayer && playAgain)
+        {
+            allPlayers[1].SetActive(false);
+        }
+        else
+        {
+            allPlayers[1].SetActive(true);
+        }
         SoundManager.PlayBGM(SoundManager.mainGameBGM);
         PauseGame();
     }

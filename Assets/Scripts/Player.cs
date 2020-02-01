@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 {
     // boolean
     public bool disablePlayer = false;
+    public static bool isSinglePlayer = false;
+
     public Item activeItem {
         get
         {
@@ -26,13 +28,15 @@ public class Player : MonoBehaviour
     private Item _activeItem = null;
 
     [Header("Player Stats")]
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 50f;
 
     [Header("Input Manager")]
     public string horizontalAxis = "Horizontal";
     public string verticalAxis = "Vertical";
 
+    public KeyCode speedUpKeyCode = KeyCode.LeftShift;
     public KeyCode actionKeyCode = KeyCode.Space;
+    public KeyCode actionKeyCode2 = KeyCode.Space;
 
     [Header("Item Dialog")]
     [SerializeField] private IconBox iconBox = null;
@@ -55,6 +59,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Speed up
+        if (Input.GetKey(speedUpKeyCode))
+        {
+            moveSpeed = 125f;
+        }
+        else
+        {
+            moveSpeed = 50f;
+        }
+
         _movement.x = Input.GetAxisRaw(horizontalAxis);
         _movement.y = Input.GetAxisRaw(verticalAxis);
 
@@ -89,7 +103,7 @@ public class Player : MonoBehaviour
         {
             var interactable = hit.collider.gameObject.GetComponent<Interactable>();
             interactable.OnTouch();
-            if (Input.GetKeyUp(actionKeyCode))
+            if (Input.GetKeyUp(actionKeyCode) || Input.GetKeyUp(actionKeyCode2) && !disablePlayer)
                 interactable.Interact(this);
             ResetInteractableColor(hit.collider.gameObject);
             _lastHitObject = hit.collider.gameObject;
@@ -130,5 +144,10 @@ public class Player : MonoBehaviour
             iconBox.SetIcon(_activeItem.image);
         }
         else iconBox.Close();
+    }
+
+    public void SetIsSinglePlayer(bool b)
+    {
+        isSinglePlayer = b;
     }
 }

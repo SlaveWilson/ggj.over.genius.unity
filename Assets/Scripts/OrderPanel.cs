@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class OrderPanel : MonoBehaviour
 {
     public int orderType; //Customize
+    public int orderCount = 0;
     public float orderTime;
     public Slider slider;
 
@@ -20,15 +21,15 @@ public class OrderPanel : MonoBehaviour
         slider.value = 1f;
         if (orderType == 0)
         {
-            orderTime = 40f;
+            orderTime = 50f;
         }
         else if (orderType == 1)
         {
-            orderTime = 35f;
+            orderTime = 40f;
         }
         else if (orderType == 2)
         {
-            orderTime = 30f;
+            orderTime = 50f;
         }
     }
     private void FixedUpdate()
@@ -39,7 +40,7 @@ public class OrderPanel : MonoBehaviour
         }
         else
         {
-            OrderManager.RemoveOrderAt(this.transform.GetSiblingIndex());
+            OrderManager.RemoveOrder(gameObject);
             Score.ordersFailed++;
             Score.totalScore = Score.totalScore - 10;
         }

@@ -28,11 +28,12 @@ public class DeliveryTable : Interactable
         item = player.activeItem;
         player.activeItem = null;
         itemImage.sprite = item.image;
-        StartCoroutine(DeliverTargetCoroutine());
+        StartCoroutine(DeliverTargetCoroutine(item.client.orderCount));
     }
 
-    IEnumerator DeliverTargetCoroutine()
+    IEnumerator DeliverTargetCoroutine(int orderCount)
     {
+        OrderManager.RemoveFinishedOrder(orderCount);
         yield return new WaitForSeconds(2);
         item = null;
         itemImage.sprite = null;

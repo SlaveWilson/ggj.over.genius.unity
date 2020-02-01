@@ -25,6 +25,9 @@ public class OrderManager : MonoBehaviour
     public Item item;
 
 
+    public static int orderCount = 0;
+
+
     public static List<GameObject> allOrders = new List<GameObject>();
     
 
@@ -37,6 +40,9 @@ public class OrderManager : MonoBehaviour
 
         possibleTableReference = _possibleTable;
         possibleItemReference = _possibleItem;
+
+
+        orderCount = 0;
     }
 
     public static void StartOrder()
@@ -46,39 +52,45 @@ public class OrderManager : MonoBehaviour
         instance.AddOrder(2);
     }
 
-    private void AddOrder(int type)
+    private void AddOrder(int orderType)
     {
-        GameObject order = Instantiate(allOrderPanelReference[type], canvasReference.transform);
+        GameObject order = Instantiate(allOrderPanelReference[orderType], canvasReference.transform);
+        order.GetComponent<OrderPanel>().orderCount = orderCount;
         allOrders.Add(order);
 
+        // Generate in scene
         int r = Random.Range(0, possibleTableReference.Count);
         while (possibleTableReference[r].GetComponent<Table>().item != null)
         {
             r = Random.Range(0, possibleTableReference.Count);
         }
-        possibleTableReference[r].GetComponent<Table>().item = Instantiate(possibleItemReference[type]).GetComponent<Item>();
+        possibleTableReference[r].GetComponent<Table>().item = Instantiate(possibleItemReference[orderType]).GetComponent<Item>();
 
         possibleTableReference[r].GetComponent<Table>().itemImage.sortingOrder = possibleTableReference[r].GetComponent<Table>().GetComponent<SpriteRenderer>().sortingOrder + 1;
         possibleTableReference[r].GetComponent<Table>().itemImage.sprite = possibleTableReference[r].GetComponent<Table>().item.image;
+
+        // Add item information
+        possibleTableReference[r].GetComponent<Table>().item.client = new Client();
+        possibleTableReference[r].GetComponent<Table>().item.client.orderType = orderType;
+        possibleTableReference[r].GetComponent<Table>().item.client.orderCount = orderCount;
+        orderCount++;
     }
-    public static void RemoveOrderAt(int i)
+    public static void RemoveOrder(GameObject orderPanel)
     {
-        allOrders.RemoveAt(i);
-        Destroy(canvasReference.transform.GetChild(i).gameObject);
+        allOrders.Remove(orderPanel);
+        Destroy(orderPanel);
     }
-    public static void CheckOrder(int type)
+    public static void RemoveFinishedOrder(int orderCount)
     {
-        int i = 0;
         foreach (GameObject order in allOrders)
         {
-            if (order.GetComponent<OrderPanel>().orderType == type)
+            if (order.GetComponent<OrderPanel>().orderCount == orderCount)
             {
-                RemoveOrderAt(i);
-                Debug.Log("Correct repair! (type " + type + ")");
-                SoundManager.CorrectRepairSE(type);
+                RemoveOrder(order);
+                Score.ordersDelivered++;
+                Score.totalScore = Score.totalScore + 20;
                 return;
             }
-            i++;
         }
         Debug.Log("Wrong repair!");
         SoundManager.WrongRepairSE();

@@ -80,7 +80,7 @@ public class SoundManager : MonoBehaviour
         float cvVolume = PlayerPrefs.GetFloat("CVVol", 1);
 
 
-        SoundManager.BGMSpeaker.volume = bgmVolume;
+        SoundManager.BGMSpeaker.volume = bgmVolume/2f;
 
         SoundManager.SESpeaker.volume = seVolume;
         SoundManager.LoopSESpeaker.volume = seVolume;
