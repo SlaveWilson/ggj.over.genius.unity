@@ -1,20 +1,17 @@
-﻿using UnityEngine;
-
-public class BreakMonitorPhone : Item
+﻿public class BreakMonitorPhone : Item
 {
-    public void Update()
+    public override void NextState()
     {
         switch (currentState)
         {
-            case State.New:
-                break;
             case State.Backup:
+                currentState = State.Monitor;
                 break;
             case State.Monitor:
+                currentState = State.Done;
                 break;
-            case State.Done:
+            default:
                 break;
         }
-        Debug.Log("This is a phone", gameObject);
     }
 }
