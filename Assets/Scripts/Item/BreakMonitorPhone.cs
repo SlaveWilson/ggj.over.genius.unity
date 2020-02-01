@@ -1,23 +1,12 @@
 ﻿using UnityEngine;
 
-public class BreakMonitorPhone : Interactable
+public class BreakMonitorPhone : Item
 {
-    public enum State
-    {
-        New,
-        Backup,
-        Monitor,
-        Done
-    }
-
-    public State currentState;
-
-    public override void Interact(Player player)
+    public void Update()
     {
         switch (currentState)
         {
             case State.New:
-                if(player.activeItem == null) player.activeItem = gameObject;
                 break;
             case State.Backup:
                 break;

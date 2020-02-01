@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     // boolean
     public bool disablePlayer = false;
-    public GameObject activeItem {
+    public Item activeItem {
         get
         {
             return _activeItem;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
             UpdateItemDialog();
         }
     }
-    private GameObject _activeItem = null;
+    private Item _activeItem = null;
 
     [Header("Player Stats")]
     public float moveSpeed = 1.0f;
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
     private void UpdateItemDialog()
     {
-        iconBox.SetIcon(_activeItem.GetComponent<SpriteRenderer>().sprite);
-        Debug.Log("Update Item Dialog");
+        if (_activeItem != null) iconBox.SetIcon(_activeItem.image);
+        else iconBox.SetIcon(null);
     }
 }

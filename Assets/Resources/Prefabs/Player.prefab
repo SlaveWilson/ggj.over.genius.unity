@@ -201,8 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7880716055950796073}
   - component: {fileID: 7880716055950796074}
-  - component: {fileID: 7880716055950796075}
   - component: {fileID: 7880716055950796076}
+  - component: {fileID: 7880716055950796075}
   - component: {fileID: 7880716055950796077}
   m_Layer: 0
   m_Name: Player
@@ -276,27 +276,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &7880716055950796075
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7880716055950796072}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &7880716055950796076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +298,27 @@ MonoBehaviour:
   rightKeyCode: 100
   actionKeyCode: 32
   iconBox: {fileID: 7706696283113014619}
+--- !u!50 &7880716055950796075
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7880716055950796072}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &7880716055950796077
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,18 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Table : MonoBehaviour
+public class Table : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public SpriteRenderer itemImage;
+
+    public Item item = null;
+
+    private void Start()
     {
-        
+        if (item != null)
+            itemImage.sprite = item.image;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Interact(Player player)
     {
-        
+        if (item == null)
+        {
+            PutDown(player);
+        } else
+        {
+            Pickup(player);
+        }
+    }
+
+    private void Pickup(Player player)
+    {
+        player.activeItem = item;
+        item = null;
+        itemImage.sprite = null;
+    }
+
+    private void PutDown(Player player)
+    {
+        item = player.activeItem;
+        player.activeItem = null;
+        itemImage.sprite = item.image;
     }
 }
