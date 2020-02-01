@@ -57,6 +57,9 @@ public class OrderManager : MonoBehaviour
             r = Random.Range(0, possibleTableReference.Count);
         }
         possibleTableReference[r].GetComponent<Table>().item = Instantiate(possibleItemReference[type]).GetComponent<Item>();
+
+        possibleTableReference[r].GetComponent<Table>().itemImage.sortingOrder = possibleTableReference[r].GetComponent<Table>().GetComponent<SpriteRenderer>().sortingOrder + 1;
+        possibleTableReference[r].GetComponent<Table>().itemImage.sprite = possibleTableReference[r].GetComponent<Table>().item.image;
     }
     public static void RemoveOrderAt(int i)
     {
