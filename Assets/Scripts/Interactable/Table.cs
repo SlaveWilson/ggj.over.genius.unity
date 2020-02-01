@@ -32,6 +32,7 @@ public class Table : Interactable
 
     private void PutDown(Player player)
     {
+        if (player.activeItem == null) return;
         item = player.activeItem;
         player.activeItem = null;
         itemImage.sprite = item.image;

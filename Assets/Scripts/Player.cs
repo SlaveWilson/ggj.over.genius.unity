@@ -61,12 +61,36 @@ public class Player : MonoBehaviour
             _facingDirection = Vector2.right;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 10.0f);
-        Debug.DrawRay(transform.position, _facingDirection);
+        Debug.DrawRay(transform.position, _facingDirection * 10.0f, Color.red);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE) && Input.GetKeyUp(actionKeyCode))
+        //if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
+        //{
+        //    var interactObject = hit.collider.gameObject;
+        //    interactObject.GetComponent<Interactable>().OnTouch();
+        //}
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
         {
-            var interactObject = hit.collider.gameObject;
-            interactObject.GetComponent<Interactable>().Interact(this);
+            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            interactable.OnTouch();
+            if (Input.GetKeyUp(actionKeyCode))
+                interactable.Interact(this);
+            ResetInteractableColor(interactable);
+        } else
+        {
+            ResetInteractableColor();
+        }
+    }
+
+    private void ResetInteractableColor(Interactable interactable = null)
+    {
+        var interactables = FindObjectsOfType<Interactable>();
+        foreach (var _interactable in interactables)
+        {
+            if(_interactable != interactable)
+            {
+                _interactable.OnTouchLeave();
+            }
         }
     }
 
