@@ -111,8 +111,7 @@ public class SoundManager : MonoBehaviour
     public static void PlaySE(AudioClip audioClip)
     {
         if (SESpeaker == null) return;
-        SESpeaker.clip = audioClip;
-        SESpeaker.Play();
+        SESpeaker.PlayOneShot(audioClip);
     }
 
     public static void PlayUI(AudioClip audioClip)
@@ -196,9 +195,7 @@ public class SoundManager : MonoBehaviour
         Debug.Log("WrongRepairSE()");
         PlaySE(wrongRepairSE);
     }
-
-
-
+  
     public static void ClickButtonSE()
     {
         Debug.Log("ClickButtonSE()");
