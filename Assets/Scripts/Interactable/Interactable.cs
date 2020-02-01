@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * 100) * -1;
     }
 
     public virtual void Interact(Player player)

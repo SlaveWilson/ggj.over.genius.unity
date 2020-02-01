@@ -1,5 +1,9 @@
-﻿public class BreakMonitorPhone : Item
+﻿using UnityEngine;
+
+public class BreakMonitorPhone : Item
 {
+    public Sprite fixedMonitorImage;
+
     public override void NextState()
     {
         switch (currentState)
@@ -9,6 +13,7 @@
                 break;
             case State.Monitor:
                 currentState = State.Done;
+                image = fixedMonitorImage;
                 break;
             default:
                 break;

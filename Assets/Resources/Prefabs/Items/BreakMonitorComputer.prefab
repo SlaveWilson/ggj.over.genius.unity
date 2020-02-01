@@ -46,3 +46,4 @@ MonoBehaviour:
   currentState: 1
   client: {fileID: 0}
   image: {fileID: 21300000, guid: 92d2864ee9b973849aff5def2fd80cee, type: 3}
+  fixedMonitorImage: {fileID: 21300000, guid: 0f181229aadeca84c89bf4ac4cbf64cf, type: 3}

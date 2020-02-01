@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         _movement.x = Input.GetAxisRaw(horizontalAxis);
         _movement.y = Input.GetAxisRaw(verticalAxis);
 
-        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y) + 10;
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * 100) * -1;
 
         _facingDirection = _movement.normalized == Vector2.zero ? _facingDirection : _movement.normalized;
 

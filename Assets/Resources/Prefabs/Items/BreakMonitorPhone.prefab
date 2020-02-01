@@ -45,4 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 1
   client: {fileID: 0}
-  image: {fileID: 21300000, guid: 605570e43eacc254491f380d9efda35f, type: 3}
+  image: {fileID: 21300000, guid: d1cb0597d11004b45a287cdba9dcf976, type: 3}
+  fixedMonitorImage: {fileID: 21300000, guid: 605570e43eacc254491f380d9efda35f, type: 3}
