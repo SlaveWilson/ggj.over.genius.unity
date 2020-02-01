@@ -8,6 +8,7 @@ public class Table : Interactable
 
     private void Start()
     {
+        itemImage.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
         if (item != null)
             itemImage.sprite = item.image;
     }

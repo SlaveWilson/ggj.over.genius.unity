@@ -7,6 +7,11 @@ public class DeliveryTable : Interactable
 
     public Item item = null;
 
+    private void Start()
+    {
+        itemImage.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
+    }
+
     public override void Interact(Player player)
     {
         if (player.activeItem == null) return;
