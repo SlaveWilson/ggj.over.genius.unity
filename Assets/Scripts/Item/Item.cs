@@ -9,7 +9,6 @@ public class Item : MonoBehaviour
         Monitor,
         Battery,
         SSD,
-        Strap,
         Done
     }
 

@@ -15,6 +15,7 @@ public class Machine : Interactable
     private float _endTime = 0.0f;
 
     private bool _isProcessing = false;
+    private bool _isFinishProcessing = false;
 
     public override void Interact(Player player)
     {
@@ -34,6 +35,7 @@ public class Machine : Interactable
         {
             if (player.activeItem != null) return;
             if (_endTime > Time.time) return;
+            if (!_isFinishProcessing) return;
 
             player.activeItem = _currentItem;
             _currentItem = null;
@@ -57,5 +59,6 @@ public class Machine : Interactable
         iconBox.Close();
         yield return new WaitForSeconds(1);
         iconBox.SetIcon(sprite);
+        _isFinishProcessing = true;
     }
 }
