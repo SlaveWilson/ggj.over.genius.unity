@@ -28,6 +28,7 @@ public class Machine : Interactable
             player.activeItem = null;
             _endTime = Time.time + processTime;
 
+            iconBox.isProcessing = true;
             iconBox.SetIcon(processImage);
 
             _isProcessing = true;

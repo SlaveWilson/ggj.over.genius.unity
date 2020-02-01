@@ -52,7 +52,9 @@ public class CraftingTable : Interactable
                 player.activeItem = null;
 
                 _endTime = Time.time + processTime;
-                StartCoroutine(ChangeIconCoroutine(processImage));
+
+                
+                StartCoroutine(ChangeIconCoroutine(processImage, true));
 
                 _isProcessing = true;
             }
@@ -64,15 +66,16 @@ public class CraftingTable : Interactable
         if (_currentItem != null && Time.time > _endTime && _isProcessing)
         {
             _currentItem.NextState();
-            StartCoroutine(ChangeIconCoroutine(finishImage));
+            StartCoroutine(ChangeIconCoroutine(finishImage, false));
             _isProcessing = false;
         }
     }
 
-    IEnumerator ChangeIconCoroutine(Sprite sprite)
+    IEnumerator ChangeIconCoroutine(Sprite sprite, bool isProcessing)
     {
         iconBox.Close();
         yield return new WaitForSeconds(1);
+        iconBox.isProcessing = isProcessing;
         iconBox.SetIcon(sprite);
         _isFinishProcessing = true;
     }

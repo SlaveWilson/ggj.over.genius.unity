@@ -273,6 +273,8 @@ MonoBehaviour:
   iconBox: {fileID: 6182773840155414449}
   iconBoxAnim: {fileID: 850907444690625006}
   tickIcon: {fileID: 650466767487903796}
+  iamgeAnim: {fileID: 2849776279676909859}
+  isProcessing: 0
   showTickIcon: 0
 --- !u!95 &850907444690625006
 Animator:
@@ -304,6 +306,7 @@ GameObject:
   - component: {fileID: 7061849314571406020}
   - component: {fileID: 9163717551568972539}
   - component: {fileID: 911114363650998012}
+  - component: {fileID: 2849776279676909859}
   m_Layer: 0
   m_Name: ItemImage
   m_TagString: Untagged
@@ -366,3 +369,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2849776279676909859
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8537885765068608901}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36b41b3bad586ae44a2c432b13ede7cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

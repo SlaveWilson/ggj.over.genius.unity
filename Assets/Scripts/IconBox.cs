@@ -8,6 +8,9 @@ public class IconBox : MonoBehaviour
     public Animator iconBoxAnim;
     public GameObject tickIcon;
 
+    public Animator iamgeAnim;
+
+    public bool isProcessing = false;
     public bool showTickIcon = false;
 
     public void SetIcon(Sprite s)
@@ -19,12 +22,14 @@ public class IconBox : MonoBehaviour
             iconBoxAnim.SetBool("Enable", false);
         } else
         {
+            iamgeAnim.SetBool("isRotate", isProcessing);
             iconBoxAnim.SetBool("Enable", true);
         }
     }
 
     public void Close()
     {
+        isProcessing = false;
         iconBoxAnim.SetBool("Enable", false);
     }
 }
