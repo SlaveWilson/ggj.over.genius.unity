@@ -43,6 +43,9 @@ public class CraftingTable : Interactable
                 player.activeItem = _currentItem;
                 _currentItem = null;
 
+                _isFinishProcessing = false;
+                _isProcessing = false;
+
                 iconBox.Close();
             } else
             {

@@ -47,9 +47,41 @@ public class OrderManager : MonoBehaviour
 
     public static void StartOrder()
     {
-        instance.AddOrder(0);
-        instance.AddOrder(1);
-        instance.AddOrder(2);
+        instance.StartCoroutine(instance.StartOrderIE());
+    }
+
+    IEnumerator StartOrderIE()
+    {
+        float t = Random.Range(2f, 5f);
+        yield return new WaitForSeconds(t);
+        int o = Random.Range(0, 3);
+        instance.AddOrder(o);
+        t = Random.Range(20f, 25f);
+        yield return new WaitForSeconds(t);
+        o = Random.Range(0, 3);
+        instance.AddOrder(o);
+        t = Random.Range(20f, 25f);
+        yield return new WaitForSeconds(t);
+        int n = Random.Range(1, 3);
+        for (int i = 0; i < n; i++)
+        {
+            o = Random.Range(0, 3);
+            instance.AddOrder(o);
+        }
+        if (n == 1)
+        {
+            t = Random.Range(2f, 5f);
+            yield return new WaitForSeconds(t);
+            o = Random.Range(0, 3);
+            instance.AddOrder(o);
+        }
+        t = Random.Range(20f, 25f);
+        yield return new WaitForSeconds(t);
+        for (int i = 0; i < 3; i++)
+        {
+            o = Random.Range(0, 3);
+            instance.AddOrder(o);
+        }
     }
 
     private void AddOrder(int orderType)
@@ -84,6 +116,7 @@ public class OrderManager : MonoBehaviour
     {
         foreach (GameObject order in allOrders)
         {
+            Debug.Log(order);
             if (order.GetComponent<OrderPanel>().orderCount == orderCount)
             {
                 RemoveOrder(order);

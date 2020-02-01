@@ -26,14 +26,14 @@ public class DeliveryTable : Interactable
     private void PutDown(Player player)
     {
         item = player.activeItem;
+        OrderManager.RemoveFinishedOrder(item.client.orderCount);
         player.activeItem = null;
         itemImage.sprite = item.image;
-        StartCoroutine(DeliverTargetCoroutine(item.client.orderCount));
+        StartCoroutine(DeliverTargetCoroutine());
     }
 
-    IEnumerator DeliverTargetCoroutine(int orderCount)
+    IEnumerator DeliverTargetCoroutine()
     {
-        OrderManager.RemoveFinishedOrder(orderCount);
         yield return new WaitForSeconds(2);
         item = null;
         itemImage.sprite = null;
