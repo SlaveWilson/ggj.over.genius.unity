@@ -10,8 +10,10 @@ public class OrderManager : MonoBehaviour
     public GameObject _canvas;
     public static GameObject canvasReference;
 
-    public GameObject _orderPanel;
-    public static GameObject orderPanelReference;
+
+    public List<GameObject> _allOrderPanel;
+    public static List<GameObject> allOrderPanelReference;
+
 
 
     public static List<GameObject> allOrders = new List<GameObject>();
@@ -20,35 +22,39 @@ public class OrderManager : MonoBehaviour
     private void Awake()
     {
         canvasReference = _canvas;
-        orderPanelReference = _orderPanel;
+        allOrderPanelReference = _allOrderPanel;
     }
+
     public static void StartOrder()
     {
-
+        AddOrder(0);
+        AddOrder(1);
+        AddOrder(2);
     }
 
-    private static void AddOrder()
+    private static void AddOrder(int type)
     {
-        GameObject order = Instantiate(orderPanelReference, canvasReference.transform);
+        GameObject order = Instantiate(allOrderPanelReference[type], canvasReference.transform);
         allOrders.Add(order);
     }
-    public static void RemoveOrder(int i)
+    public static void RemoveOrderAt(int i)
     {
         allOrders.RemoveAt(i);
+        Destroy(canvasReference.transform.GetChild(i).gameObject);
     }
-    public static void CheckOrder(int i)
+    public static void CheckOrder(int type)
     {
-        int j = 0;
+        int i = 0;
         foreach (GameObject order in allOrders)
         {
-            if (order.GetComponent<OrderPanel>().orderType == i)
+            if (order.GetComponent<OrderPanel>().orderType == type)
             {
-                RemoveOrder(j);
-                Debug.Log("Correct repair! (type " + i + ")");
-                SoundManager.CorrectRepairSE(i);
+                RemoveOrderAt(i);
+                Debug.Log("Correct repair! (type " + type + ")");
+                SoundManager.CorrectRepairSE(type);
                 return;
             }
-            j++;
+            i++;
         }
         Debug.Log("Wrong repair!");
         SoundManager.WrongRepairSE();
