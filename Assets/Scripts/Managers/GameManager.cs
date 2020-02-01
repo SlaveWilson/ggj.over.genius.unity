@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +11,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> allPlayers;
 
     // boolean
-    public static bool instructionClicked = false;
     public static bool gameFinished = false;
-    public static bool isPaused;
 
     private void Awake()
     {
@@ -29,12 +28,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SoundManager.ClickButtonSE();
-        if (!instructionClicked)
+        if (EndGamePanel.canPlayAgain)
+        {
+            PlayAgain();
+        }
+        if (EndGamePanel.canExit)
+        {
+            Exit();
+        }
+
+        if (!DialogManager.instructionClicked)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                instructionClicked = true;
+                DialogManager.instructionClicked = true;
                 SoundManager.ClickButtonSE();
                 DialogManager.DestroyInstruction();
 
@@ -123,4 +130,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("EnableEnvironment()");
     }
 
+
+    private static void PlayAgain()
+    {
+        Debug.Log("PlayAgain()");
+        EndGamePanel.canPlayAgain = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        Timer.isStart = false;
+        Timer.isStop = true;
+        gameFinished = false;
+    }
+    private static void Exit()
+    {
+        Debug.Log("Exit()");
+        EndGamePanel.canExit = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        Timer.isStart = false;
+        Timer.isStop = true;
+        gameFinished = false;
+    }
 }

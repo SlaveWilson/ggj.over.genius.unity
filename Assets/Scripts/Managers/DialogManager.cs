@@ -28,6 +28,7 @@ public class DialogManager : MonoBehaviour
 
 
     // boolean
+    public static bool instructionClicked = false;
     public static bool readyFinished = false;
     public static bool goFinished = false;
 
@@ -44,6 +45,7 @@ public class DialogManager : MonoBehaviour
     public static void ShowInstruction()
     {
         Debug.Log("ShowInstruction()");
+        instructionClicked = false;
         instructionPanel = Instantiate(instructionPanelReference, canvasReference.transform);
     }
     public static void DestroyInstruction()
@@ -55,6 +57,7 @@ public class DialogManager : MonoBehaviour
     public static void ShowReady()
     {
         Debug.Log("ShowReady()");
+        readyFinished = false;
         instance.StartCoroutine(ReadyIE());
     }
     static IEnumerator ReadyIE()
@@ -74,6 +77,7 @@ public class DialogManager : MonoBehaviour
     public static void ShowGo()
     {
         Debug.Log("ShowGo()");
+        goFinished = false;
         instance.StartCoroutine(GoIE());
     }
     static IEnumerator GoIE()
@@ -92,6 +96,18 @@ public class DialogManager : MonoBehaviour
     public static void ShowTimesUp()
     {
         Debug.Log("ShowTimesUp()");
+        instance.StartCoroutine(TimesUpIE());
+    }
+    static IEnumerator TimesUpIE()
+    {
+        Debug.Log("TimesUpIE()");
         timesUpPanel = Instantiate(timesUpPanelReference, canvasReference.transform);
+        yield return new WaitForSeconds(2f);
+        DestroyTimesUp();
+    }
+    public static void DestroyTimesUp()
+    {
+        Debug.Log("DestroyTimesUp()");
+        Destroy(timesUpPanel);
     }
 }
