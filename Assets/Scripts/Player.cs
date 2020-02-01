@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
         if (_activeItem != null)
         {
             if (_activeItem.currentState == Item.State.Done) iconBox.showTickIcon = true;
+            else iconBox.showTickIcon = false;
             iconBox.SetIcon(_activeItem.image);
         }
         else iconBox.Close();
