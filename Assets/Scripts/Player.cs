@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
     private Vector2 _movement;
     private Vector2 _facingDirection = Vector2.up;
 
+    private GameObject _lastHitObject = null;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -89,22 +91,25 @@ public class Player : MonoBehaviour
             interactable.OnTouch();
             if (Input.GetKeyUp(actionKeyCode))
                 interactable.Interact(this);
-            ResetInteractableColor(interactable);
-        } else
+            ResetInteractableColor(hit.collider.gameObject);
+            _lastHitObject = hit.collider.gameObject;
+        }
+        else
         {
             ResetInteractableColor();
         }
     }
 
-    private void ResetInteractableColor(Interactable interactable = null)
+    private void ResetInteractableColor(GameObject currentHitObject = null)
     {
-        var interactables = FindObjectsOfType<Interactable>();
-        foreach (var _interactable in interactables)
+        if (currentHitObject == null)
         {
-            if(_interactable != interactable)
-            {
-                _interactable.OnTouchLeave();
-            }
+            if (_lastHitObject == null) return;
+            _lastHitObject.GetComponent<Interactable>().OnTouchLeave();
+        } else
+        {
+            if (currentHitObject == _lastHitObject || _lastHitObject == null) return;
+            _lastHitObject.GetComponent<Interactable>().OnTouchLeave();
         }
     }
 
