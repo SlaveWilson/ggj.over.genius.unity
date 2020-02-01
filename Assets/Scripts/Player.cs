@@ -60,14 +60,8 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown(rightKeyCode))
             _facingDirection = Vector2.right;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 10.0f);
-        Debug.DrawRay(transform.position, _facingDirection * 10.0f, Color.red);
-
-        //if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
-        //{
-        //    var interactObject = hit.collider.gameObject;
-        //    interactObject.GetComponent<Interactable>().OnTouch();
-        //}
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 15.0f);
+        Debug.DrawRay(transform.position, _facingDirection * 15.0f, Color.red);
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE))
         {

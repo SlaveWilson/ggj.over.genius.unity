@@ -6,7 +6,6 @@ public class Interactable : MonoBehaviour
     public bool isInteractable = true;
 
     private SpriteRenderer sprite;
-    //private Color colorOnTouch = new Color();
 
     private void Awake()
     {
@@ -20,7 +19,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void OnTouch()
     {
-        sprite.color = Color.gray;
+        sprite.color = new Color(215.0f/ 255.0f, 215.0f / 255.0f, 215.0f / 255.0f);
     }
 
     public virtual void OnTouchLeave()

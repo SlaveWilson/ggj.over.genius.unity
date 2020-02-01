@@ -3052,6 +3052,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1984499420}
     m_Modifications:
+    - target: {fileID: 2725689387491572502, guid: d9a782d3785433b4e959af7abd40cd6c,
+        type: 3}
+      propertyPath: colorOnTouch.r
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2725689387491572502, guid: d9a782d3785433b4e959af7abd40cd6c,
+        type: 3}
+      propertyPath: colorOnTouch.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2725689387491572502, guid: d9a782d3785433b4e959af7abd40cd6c,
+        type: 3}
+      propertyPath: colorOnTouch.b
+      value: 0.84313726
+      objectReference: {fileID: 0}
     - target: {fileID: 2725689387491572504, guid: d9a782d3785433b4e959af7abd40cd6c,
         type: 3}
       propertyPath: m_LocalPosition.x
