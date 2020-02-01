@@ -1,12 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     // boolean
     public bool disablePlayer = false;
+    public GameObject activeItem {
+        get
+        {
+            return _activeItem;
+        }
+        set
+        {
+            _activeItem = value;
+            UpdateItemDialog();
+        }
+    }
+    private GameObject _activeItem = null;
 
+    [Header("Player Stats")]
     public float moveSpeed = 1.0f;
 
+    [Header("Input Manager")]
     public string horizontalAxis = "Horizontal";
     public string verticalAxis = "Vertical";
 
@@ -17,9 +32,10 @@ public class Player : MonoBehaviour
 
     public KeyCode actionKeyCode = KeyCode.Space;
 
-    private string TAG_INTERACTABLE = "Interactable";
+    [Header("Item Dialog")]
+    [SerializeField] private IconBox iconBox;
 
-    private GameObject _activeItem = null;
+    private string TAG_INTERACTABLE = "Interactable";
 
     private Rigidbody2D _rb;
     private Vector2 _movement;
@@ -50,7 +66,7 @@ public class Player : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject.CompareTag(TAG_INTERACTABLE) && Input.GetKeyUp(actionKeyCode))
         {
             var interactObject = hit.collider.gameObject;
-            interactObject.GetComponent<Interactable>().Interact();
+            interactObject.GetComponent<Interactable>().Interact(this);
         }
     }
 
@@ -60,5 +76,11 @@ public class Player : MonoBehaviour
         {
             _rb.MovePosition(_rb.position + _movement * moveSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    private void UpdateItemDialog()
+    {
+        iconBox.SetIcon(_activeItem.GetComponent<SpriteRenderer>().sprite);
+        Debug.Log("Update Item Dialog");
     }
 }
