@@ -3,7 +3,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public static float durationInSecond = 3.0f;
+    public static float durationInSecond = 90f;
     public static bool isStart = false;
     public static bool isStop = true;
 
