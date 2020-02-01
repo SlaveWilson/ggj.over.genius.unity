@@ -61,22 +61,23 @@ public class Player : MonoBehaviour
         _movement.x = Input.GetAxisRaw(horizontalAxis);
         _movement.y = Input.GetAxisRaw(verticalAxis);
 
-        if (Input.GetKeyDown(upKeyCode))
+        _facingDirection = _movement.normalized == Vector2.zero ? _facingDirection : _movement.normalized;
+
+        if (_facingDirection == Vector2.up || _facingDirection == new Vector2(0.7f, 0.7f).normalized)
         {
             _facingDirection = Vector2.up;
             _animator.SetInteger("direction", (int)Direction.North);
         }
-        else if (Input.GetKeyDown(downKeyCode))
+        else if (_facingDirection == Vector2.down || _facingDirection == new Vector2(-0.7f, -0.7f).normalized)
         {
             _facingDirection = Vector2.down;
             _animator.SetInteger("direction", (int)Direction.South);
         }
-        else if (Input.GetKeyDown(leftKeyCode))
+        else if (_facingDirection == Vector2.left || _facingDirection == new Vector2(-0.7f, 0.7f).normalized)
         {
             _facingDirection = Vector2.left;
             _animator.SetInteger("direction", (int)Direction.West);
-        }
-        else if (Input.GetKeyDown(rightKeyCode))
+        } else
         {
             _facingDirection = Vector2.right;
             _animator.SetInteger("direction", (int)Direction.East);
