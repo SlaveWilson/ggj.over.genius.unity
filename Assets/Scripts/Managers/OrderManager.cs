@@ -17,6 +17,10 @@ public class OrderManager : MonoBehaviour
 
 
     // Generate items in scene
+    public List<GameObject> _possibleTable;
+    public static List<GameObject> possibleTableReference;
+    public List<GameObject> _possibleItem;
+    public static List<GameObject> possibleItemReference;
     public Table table;
     public Item item;
 
@@ -29,6 +33,10 @@ public class OrderManager : MonoBehaviour
         instance = this;
         canvasReference = _canvas;
         allOrderPanelReference = _allOrderPanel;
+
+
+        possibleTableReference = _possibleTable;
+        possibleItemReference = _possibleItem;
     }
 
     public static void StartOrder()
@@ -43,7 +51,12 @@ public class OrderManager : MonoBehaviour
         GameObject order = Instantiate(allOrderPanelReference[type], canvasReference.transform);
         allOrders.Add(order);
 
-        table.item = Instantiate(item).GetComponent<Item>();
+        int r = Random.Range(0, possibleTableReference.Count);
+        while (possibleTableReference[r].GetComponent<Table>().item != null)
+        {
+            r = Random.Range(0, possibleTableReference.Count);
+        }
+        possibleTableReference[r].GetComponent<Table>().item = Instantiate(possibleItemReference[type]).GetComponent<Item>();
     }
     public static void RemoveOrderAt(int i)
     {

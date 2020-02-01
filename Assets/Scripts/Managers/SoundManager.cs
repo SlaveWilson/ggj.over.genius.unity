@@ -111,6 +111,7 @@ public class SoundManager : MonoBehaviour
     public static void PlaySE(AudioClip audioClip)
     {
         if (SESpeaker == null) return;
+        SESpeaker.clip = audioClip;
         SESpeaker.PlayOneShot(audioClip);
     }
 
