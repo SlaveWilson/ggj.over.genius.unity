@@ -32,11 +32,6 @@ public class Player : MonoBehaviour
     public string horizontalAxis = "Horizontal";
     public string verticalAxis = "Vertical";
 
-    public KeyCode upKeyCode = KeyCode.W;
-    public KeyCode downKeyCode = KeyCode.S;
-    public KeyCode leftKeyCode = KeyCode.A;
-    public KeyCode rightKeyCode = KeyCode.D;
-
     public KeyCode actionKeyCode = KeyCode.Space;
 
     [Header("Item Dialog")]
