@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class HardwareBox : Interactable
+public class ToolsBox : Interactable
 {
     public Sprite toolImage = null;
     public Item toolItem;
@@ -10,7 +10,7 @@ public class HardwareBox : Interactable
 
     public override void Interact(Player player)
     {
-        player.activeItem = toolItem;
+        if (player.activeItem == null) player.activeItem = toolItem;
     }
 
     public override void OnTouch()

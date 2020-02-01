@@ -1,5 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+
+public enum Direction
+{
+    North,
+    South,
+    West,
+    East
+}
 
 public class Player : MonoBehaviour
 {
@@ -38,12 +45,15 @@ public class Player : MonoBehaviour
     private string TAG_INTERACTABLE = "Interactable";
 
     private Rigidbody2D _rb;
+    private Animator _animator;
+
     private Vector2 _movement;
     private Vector2 _facingDirection = Vector2.up;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -52,13 +62,25 @@ public class Player : MonoBehaviour
         _movement.y = Input.GetAxisRaw(verticalAxis);
 
         if (Input.GetKeyDown(upKeyCode))
+        {
             _facingDirection = Vector2.up;
+            _animator.SetInteger("direction", (int)Direction.North);
+        }
         else if (Input.GetKeyDown(downKeyCode))
+        {
             _facingDirection = Vector2.down;
+            _animator.SetInteger("direction", (int)Direction.South);
+        }
         else if (Input.GetKeyDown(leftKeyCode))
+        {
             _facingDirection = Vector2.left;
+            _animator.SetInteger("direction", (int)Direction.West);
+        }
         else if (Input.GetKeyDown(rightKeyCode))
+        {
             _facingDirection = Vector2.right;
+            _animator.SetInteger("direction", (int)Direction.East);
+        }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _facingDirection, 15.0f);
         Debug.DrawRay(transform.position, _facingDirection * 15.0f, Color.red);
