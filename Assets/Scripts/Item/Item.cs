@@ -4,7 +4,6 @@ public class Item : MonoBehaviour
 {
     public enum State
     {
-        New,
         Tool,
         Backup,
         Monitor,

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1960437795921623448}
   - component: {fileID: 1960437795921623449}
   m_Layer: 0
-  m_Name: BreakMontiorPhone
+  m_Name: BreakMonitorPhone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0298d6f6056e2c14c96562bd723f923d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
   client: {fileID: 0}
   image: {fileID: 21300000, guid: 605570e43eacc254491f380d9efda35f, type: 3}

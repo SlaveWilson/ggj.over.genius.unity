@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531d1d9110fd6441880adc120c54ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
   client: {fileID: 0}
   image: {fileID: 21300000, guid: 605570e43eacc254491f380d9efda35f, type: 3}
