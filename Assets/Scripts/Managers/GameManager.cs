@@ -60,14 +60,14 @@ public class GameManager : MonoBehaviour
         {
             PlayAgain();
         }
-        if (EndGamePanel.canExit)
+        if (ComingSoonPanel.canExit)
         {
             Exit();
         }
 
         if (!DialogManager.instructionClicked)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (InstructionPanel.clickedLast)
             {
                 DialogManager.instructionClicked = true;
                 SoundManager.ClickButtonSE();
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
     private static void Exit()
     {
         Debug.Log("Exit()");
-        EndGamePanel.canExit = false;
+        ComingSoonPanel.canExit = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         Timer.isStart = false;

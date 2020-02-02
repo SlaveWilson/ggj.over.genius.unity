@@ -10,11 +10,10 @@ public class EndGamePanel : MonoBehaviour
     public GameObject ordersFailed;
     public GameObject totalScore;
     public GameObject playAgain;
-    public GameObject exit;
+    public GameObject comingSoon;
 
     // boolean
     public static bool canPlayAgain = false;
-    public static bool canExit = false;
 
     private void Awake()
     {
@@ -22,7 +21,7 @@ public class EndGamePanel : MonoBehaviour
         ordersFailed = this.transform.Find("OrdersFailed").gameObject;
         totalScore = this.transform.Find("TotalScore").gameObject;
         playAgain = this.transform.Find("PlayAgain").gameObject;
-        exit = this.transform.Find("Exit").gameObject;
+        comingSoon = this.transform.Find("ComingSoon").gameObject;
     }
 
     void Start()
@@ -36,9 +35,13 @@ public class EndGamePanel : MonoBehaviour
         playAgain.GetComponent<Button>().onClick.AddListener(
         () => canPlayAgain = true);
 
-        exit.GetComponent<Button>().onClick.AddListener(
-        () => canExit = true);
+        comingSoon.GetComponent<Button>().onClick.AddListener(
+        () => ComingSoon()); //canExit = true;
     }
 
-
+    public void ComingSoon()
+    {
+        Destroy(gameObject);
+        Instantiate(CanvasManager.comingSoonPanelReference, DialogManager.canvasReference.transform);
+    }
 }

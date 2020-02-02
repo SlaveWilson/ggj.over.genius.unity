@@ -17,6 +17,8 @@ public class CanvasManager : MonoBehaviour
     // Inspector elements
     public GameObject _endGamePanel;
     public static GameObject endGamePanelReference;
+    public GameObject _comingSoonPanel;
+    public static GameObject comingSoonPanelReference;
 
     // Instantiated
     private static GameObject endGamePanel;
@@ -29,6 +31,7 @@ public class CanvasManager : MonoBehaviour
         instance = this;
         canvasReference = _canvas;
         endGamePanelReference = _endGamePanel;
+        comingSoonPanelReference = _comingSoonPanel;
 
 
         startMenu = canvasReference.transform.Find("StartMenu").gameObject;
