@@ -41,6 +41,7 @@ public class EndGamePanel : MonoBehaviour
 
     public void ComingSoon()
     {
+        SoundManager.PlayBGM(SoundManager.mainGameBGM);
         Destroy(gameObject);
         Instantiate(CanvasManager.comingSoonPanelReference, DialogManager.canvasReference.transform);
     }
