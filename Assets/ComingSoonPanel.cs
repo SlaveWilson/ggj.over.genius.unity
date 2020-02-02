@@ -29,8 +29,9 @@ public class ComingSoonPanel : MonoBehaviour
         left.GetComponent<Button>().onClick.AddListener(() => LastPage());
         exit.GetComponent<Button>().onClick.AddListener(() => canExit = true);
 
+        right.SetActive(true);
         left.SetActive(false);
-
+        exit.SetActive(false);
 
         canExit = false;
         clickedLast = false;
@@ -41,6 +42,7 @@ public class ComingSoonPanel : MonoBehaviour
 
     public void NextPage()
     {
+        SoundManager.ClickButtonSE();
         if (currentPage == pages.Count - 1)
         {
             right.SetActive(false);
@@ -61,6 +63,7 @@ public class ComingSoonPanel : MonoBehaviour
     }
     public void LastPage()
     {
+        SoundManager.ClickButtonSE();
         if (currentPage == pages.Count)
         {
             right.SetActive(true);

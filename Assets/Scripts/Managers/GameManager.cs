@@ -24,15 +24,15 @@ public class GameManager : MonoBehaviour
     {
         if (playAgain)
         {
+            SoundManager.ClickButtonSE();
             CanvasManager.startMenu.SetActive(false);
             CanvasManager.modeMenu.SetActive(false);
 
-            CameraManager.StartZoomOut();
-            SoundManager.ReadySE();
             DialogManager.ShowReady();
         }
         else if (exit)
         {
+            SoundManager.ClickButtonSE();
             CanvasManager.startMenu.SetActive(true);
             CanvasManager.modeMenu.SetActive(false);
         }
@@ -70,12 +70,12 @@ public class GameManager : MonoBehaviour
             if (InstructionPanel.clickedLast)
             {
                 DialogManager.instructionClicked = true;
-                SoundManager.ClickButtonSE();
+                //SoundManager.ClickButtonSE();
                 DialogManager.DestroyInstruction();
 
                 // Next action
                 CameraManager.StartZoomOut();
-                SoundManager.ReadySE();
+                //SoundManager.ReadySE();
                 DialogManager.ShowReady();
             }
         }
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             DialogManager.DestroyReady();
 
             // Next action
-            SoundManager.GoSE();
+            //SoundManager.GoSE();
             DialogManager.ShowGo();
             ResumeGame();
             Timer.StartTimer();
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             Timer.StopTimer();
 
             // Next action
-            SoundManager.TimesUpSE();
+            //SoundManager.TimesUpSE();
             DialogManager.ShowTimesUp();
             PauseGame();
             CanvasManager.ShowEndGamePanel();

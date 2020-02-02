@@ -36,6 +36,7 @@ public class InstructionPanel : MonoBehaviour
 
     public void NextPage()
     {
+        SoundManager.ClickButtonSE();
         if (currentPage == pages.Count)
         {
             clickedLast = true;
@@ -50,6 +51,7 @@ public class InstructionPanel : MonoBehaviour
     }
     public void LastPage()
     {
+        SoundManager.ClickButtonSE();
         if (currentPage == 1)
         {
             return;

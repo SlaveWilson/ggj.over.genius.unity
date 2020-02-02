@@ -202,4 +202,9 @@ public class SoundManager : MonoBehaviour
         Debug.Log("ClickButtonSE()");
         PlaySE(clickButtonSE);
     }
+    public void ClickButtonSE2()
+    {
+        Debug.Log("ClickButtonSE2()");
+        ClickButtonSE();
+    }
 }

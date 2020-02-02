@@ -36,7 +36,7 @@ public class EndGamePanel : MonoBehaviour
         () => canPlayAgain = true);
 
         comingSoon.GetComponent<Button>().onClick.AddListener(
-        () => ComingSoon()); //canExit = true;
+        () => { ComingSoon(); SoundManager.ClickButtonSE(); }); //canExit = true;
     }
 
     public void ComingSoon()
